@@ -48,11 +48,43 @@ else:
 
 # Word Frequency Counter: Count occurrences of each word in a sentence (case-insensitive). Display as a formatted list.
 
+text = input("Enter text: ")
+word_freq = {}
+for word in text.split():
+    word = word.lower()
+    word_freq[word] = word_freq.get(word, 0) + 1
+print("Word Frequency:")
+for word, freq in word_freq.items():
+    print(f"{word}: {freq}")
 
 
-# Text Censor: Replace specified words in text with asterisks of the same length. Preserve the original word lengths.
+# Censor Text: Replace banned words in a sentence with asterisks. Example: "This is bad" with "bad" banned becomes "This is ***".
+
+def censor_text(text, banned_words):
+   
+    words = text.split()
+    censored_words = []
+
+    for word in words:
+        # Check if the lowercase version of the word is in banned list
+        if word.lower() in [bw.lower() for bw in banned_words]:
+            censored_words.append('*' * len(word))
+        else:
+            censored_words.append(word)
+
+    return " ".join(censored_words)
+
+text = "This is a bad example of a bad sentence."
+banned_words = ["bad"]
+censored = censor_text(text, banned_words)
+print(censored)
+
 
 # Name Formatter: Convert names between formats: "First Last" ↔ "Last, First" ↔ "Last, F."
+
+
+
+
 
 # URL Slug Generator: Convert titles to URL-friendly slugs: lowercase, spaces to hyphens, remove special characters.
 
